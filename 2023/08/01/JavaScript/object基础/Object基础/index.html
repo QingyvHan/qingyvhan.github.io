@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>QingYv | QingYv</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="[TOC] 对象方法，”this”在没有对象的情况下调用：this &#x3D;&#x3D; undefined 12345function sayHi() &#123;  alert(this);&#125;sayHi(); &#x2F;&#x2F; undefined  在这种情况下，严格模式下的 this 值为 undefined。如果我们尝试访问 this.name，将会报错。 箭头函数没有自己的 “this”箭头函数没有自己的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QingYv">
+<meta property="og:url" content="http://example.com/2023/08/01/JavaScript/object%E5%9F%BA%E7%A1%80/Object%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="QingYv">
+<meta property="og:description" content="[TOC] 对象方法，”this”在没有对象的情况下调用：this &#x3D;&#x3D; undefined 12345function sayHi() &#123;  alert(this);&#125;sayHi(); &#x2F;&#x2F; undefined  在这种情况下，严格模式下的 this 值为 undefined。如果我们尝试访问 this.name，将会报错。 箭头函数没有自己的 “this”箭头函数没有自己的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-08-01T14:34:48.194Z">
+<meta property="article:modified_time" content="2024-04-08T15:05:08.154Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/08/01/JavaScript/object%E5%9F%BA%E7%A1%80/Object%E5%9F%BA%E7%A1%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'QingYv',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-08 23:05:08'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="QingYv"><span class="site-name">QingYv</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-01T14:34:48.194Z" title="Created 2023-08-01 22:34:48">2023-08-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-04-08T15:05:08.154Z" title="Updated 2024-04-08 23:05:08">2024-04-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>[TOC]</p>
+<h1 id="对象方法，”this”"><a href="#对象方法，”this”" class="headerlink" title="对象方法，”this”"></a>对象方法，”this”</h1><p><strong>在没有对象的情况下调用：</strong><code>this == undefined</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sayHi</span>(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>在这种情况下，严格模式下的 <code>this</code> 值为 <code>undefined</code>。如果我们尝试访问 <code>this.name</code>，将会报错。</p>
+<h2 id="箭头函数没有自己的-“this”"><a href="#箭头函数没有自己的-“this”" class="headerlink" title="箭头函数没有自己的 “this”"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/object-methods#jian-tou-han-shu-mei-you-zi-ji-de-this">箭头函数没有自己的 “this”</a></h2><p>箭头函数没有自己的 <code>this</code>。如果在这样的函数中引用 <code>this</code>，<code>this</code> 值取决于外部“正常的”函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">  <span class="attr">firstName</span>: <span class="string">&quot;Ilya&quot;</span>,</span><br><span class="line">  <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="title function_">arrow</span> = (<span class="params"></span>) =&gt; <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">firstName</span>);</span><br><span class="line">    <span class="title function_">arrow</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">user.<span class="title function_">sayHi</span>();</span><br></pre></td></tr></table></figure>
+
+<h1 id="构造器和操作符-“new”"><a href="#构造器和操作符-“new”" class="headerlink" title="构造器和操作符 “new”"></a>构造器和操作符 “new”</h1><p>构造函数在技术上是常规函数。不过有两个约定：</p>
+<ol>
+<li>它们的命名以大写字母开头。</li>
+<li>它们只能由 <code>&quot;new&quot;</code> 操作符来执行。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">User</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">isAdmin</span> = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;Jack&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>当一个函数被使用 <code>new</code> 操作符执行时，它按照以下步骤：</p>
+<ol>
+<li>一个新的空对象被创建并分配给 <code>this</code>。</li>
+<li>函数体执行。通常它会修改 <code>this</code>，为其添加新的属性。</li>
+<li>返回 <code>this</code> 的值。</li>
+</ol>
+<p><strong>new function() { … }</strong></p>
+<p>如果我们有许多行用于创建单个复杂对象的代码，我们可以将它们封装在一个立即调用的构造函数中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个函数并立即使用 new 调用它</span></span><br><span class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&quot;John&quot;</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">isAdmin</span> = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ……用于用户创建的其他代码</span></span><br><span class="line">  <span class="comment">// 也许是复杂的逻辑和语句</span></span><br><span class="line">  <span class="comment">// 局部变量等</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="构造器模式测试：new-target"><a href="#构造器模式测试：new-target" class="headerlink" title="构造器模式测试：new.target"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/constructor-new#gou-zao-qi-mo-shi-ce-shi-newtarget">构造器模式测试：new.target</a></h2><h2 id="构造器的-return"><a href="#构造器的-return" class="headerlink" title="构造器的 return"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/constructor-new#gou-zao-qi-de-return">构造器的 return</a></h2><p>通常，构造器没有 <code>return</code> 语句。它们的任务是将所有必要的东西写入 <code>this</code>，并自动转换为结果。</p>
+<p>但是，如果这有一个 <code>return</code> 语句，那么规则就简单了：</p>
+<ul>
+<li>如果 <code>return</code> 返回的是一个对象，则返回这个对象，而不是 <code>this</code>。</li>
+<li>如果 <code>return</code> 返回的是一个原始类型，则忽略。</li>
+</ul>
+<h2 id="构造器中的方法"><a href="#构造器中的方法" class="headerlink" title="构造器中的方法"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/constructor-new#gou-zao-qi-zhong-de-fang-fa">构造器中的方法</a></h2><h1 id="可选链-“-”"><a href="#可选链-“-”" class="headerlink" title="可选链 “?.”"></a>可选链 “?.”</h1><p>如果可选链 <code>?.</code> 前面的值为 <code>undefined</code> 或者 <code>null</code>，它会停止运算并返回 <code>undefined</code>。</p>
+<p><code>?.</code> 语法使其前面的值成为可选值，但不会对其后面的起作用。</p>
+<p><code>?.</code> <strong>前的变量必须已声明</strong></p>
+<p>正如前面所说的，如果 <code>?.</code> 左边部分不存在，就会立即停止运算（“<strong>短路效应</strong>”）。</p>
+<p>可选链 <code>?.</code> 不是一个运算符，而是一个特殊的语法结构。它还可以与函数和方括号一起使用。</p>
+<p>将 <code>?.()</code> 用于调用一个可能不存在的函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> userAdmin = &#123;</span><br><span class="line">  <span class="title function_">admin</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;I am admin&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> userGuest = &#123;&#125;;</span><br><span class="line">userAdmin.<span class="property">admin</span>?.();</span><br><span class="line">userGuest.<span class="property">admin</span>?.();</span><br></pre></td></tr></table></figure>
+
+<p>使用方括号 <code>[]</code> 而不是点符号 <code>.</code> 来访问属性，使用语法 <code>?.[]</code> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> key = <span class="string">&quot;firstName&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user1 = &#123;</span><br><span class="line">  <span class="attr">firstName</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user2 = <span class="literal">null</span>;</span><br><span class="line"><span class="title function_">alert</span>(user1?.[key]);</span><br><span class="line"><span class="title function_">alert</span>(user2?.[key]);</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>?.</code> 跟 <code>delete</code> 一起使用</p>
+<p><strong>可以使用</strong> <code>?.</code> <strong>来安全地读取或删除，但不能写入</strong>，可选链 <code>?.</code> 不能用在赋值语句的左侧。</p>
+<p>可选链 <code>?.</code> 语法有三种形式：</p>
+<ol>
+<li><code>obj?.prop</code> —— 如果 <code>obj</code> 存在则返回 <code>obj.prop</code>，否则返回 <code>undefined</code>。</li>
+<li><code>obj?.[prop]</code> —— 如果 <code>obj</code> 存在则返回 <code>obj[prop]</code>，否则返回 <code>undefined</code>。</li>
+<li><code>obj.method?.()</code> —— 如果 <code>obj.method</code> 存在则调用 <code>obj.method()</code>，否则返回 <code>undefined</code>。</li>
+</ol>
+<p>正如我们所看到的，这些语法形式用起来都很简单直接。<code>?.</code> 检查左边部分是否为 <code>null/undefined</code>，如果不是则继续运算。</p>
+<p><code>?.</code> 链使我们能够安全地访问嵌套属性。</p>
+<h1 id="symbol-类型"><a href="#symbol-类型" class="headerlink" title="symbol 类型"></a>symbol 类型</h1><p>根据规范，只有两种原始类型可以用作对象属性键：</p>
+<ul>
+<li>字符串类型</li>
+<li>symbol 类型</li>
+</ul>
+<p>否则，如果使用另一种类型，例如数字，它会被自动转换为字符串。所以 <code>obj[1]</code> 与 <code>obj[&quot;1&quot;]</code> 相同，而 <code>obj[true]</code> 与 <code>obj[&quot;true&quot;]</code> 相同。</p>
+<h3 id="对象字面量中的-symbol"><a href="#对象字面量中的-symbol" class="headerlink" title="对象字面量中的 symbol"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/symbol#dui-xiang-zi-mian-liang-zhong-de-symbol">对象字面量中的 symbol</a></h3><p>如果我们要在对象字面量 <code>&#123;...&#125;</code> 中使用 symbol，则需要使用方括号把它括起来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> id = <span class="title class_">Symbol</span>(<span class="string">&quot;id&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  [id]: <span class="number">123</span> <span class="comment">// 而不是 &quot;id&quot;：123</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>需要变量 <code>id</code> 的值作为键，而不是字符串 “id”。</p>
+<h3 id="symbol-在-for…in-中会被跳过"><a href="#symbol-在-for…in-中会被跳过" class="headerlink" title="symbol 在 for…in 中会被跳过"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/symbol#symbol-zai-forin-zhong-hui-bei-tiao-guo">symbol 在 for…in 中会被跳过</a></h3><p>symbol 属性不参与 <code>for..in</code> 循环。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys(user)</a> 也会忽略它们。这是一般“隐藏符号属性”原则的一部分。如果另一个脚本或库遍历我们的对象，它不会意外地访问到符号属性。</p>
+<p>相反，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a> 会同时复制字符串和 symbol 属性：</p>
+<h2 id="全局-symbol"><a href="#全局-symbol" class="headerlink" title="全局 symbol"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/symbol#quan-ju-symbol">全局 symbol</a></h2><p>从注册表中读取（不存在则创建）symbol，使用 <code>Symbol.for(key)</code>。</p>
+<p>该调用会检查全局注册表，如果有一个描述为 <code>key</code> 的 symbol，则返回该 symbol，否则将创建一个新 symbol（<code>Symbol(key)</code>），并通过给定的 <code>key</code> 将其存储在注册表中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从全局注册表中读取</span></span><br><span class="line"><span class="keyword">let</span> id = <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&quot;id&quot;</span>); <span class="comment">// 如果该 symbol 不存在，则创建它</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 再次读取（可能是在代码中的另一个位置）</span></span><br><span class="line"><span class="keyword">let</span> idAgain = <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&quot;id&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相同的 symbol</span></span><br><span class="line"><span class="title function_">alert</span>( id === idAgain ); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>注册表内的 symbol 被称为 <strong>全局 symbol</strong>。如果我们想要一个应用程序范围内的 symbol，可以在代码中随处访问 —— 这就是它们的用途。</p>
+<h3 id="Symbol-keyFor"><a href="#Symbol-keyFor" class="headerlink" title="Symbol.keyFor"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/symbol#symbolkeyfor">Symbol.keyFor</a></h3><p>通过全局 symbol 返回一个名字，我们可以使用 <code>Symbol.keyFor(sym)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> globalSymbol = <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> localSymbol = <span class="title class_">Symbol</span>(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>( <span class="title class_">Symbol</span>.<span class="title function_">keyFor</span>(globalSymbol) ); <span class="comment">// name，全局 symbol</span></span><br><span class="line"><span class="title function_">alert</span>( <span class="title class_">Symbol</span>.<span class="title function_">keyFor</span>(localSymbol) ); <span class="comment">// undefined，非全局</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>( localSymbol.<span class="property">description</span> ); <span class="comment">// name</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Symbol.keyFor</code> 内部使用全局 symbol 注册表来查找 symbol 的键。所以它不适用于非全局 symbol。如果 symbol 不是全局的，它将无法找到它并返回 <code>undefined</code>。</p>
+<p>所有 symbol 都具有 <code>description</code> 属性。</p>
+<h2 id="系统-symbol"><a href="#系统-symbol" class="headerlink" title="系统 symbol"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/symbol#xi-tong-symbol">系统 symbol</a></h2><p> <a target="_blank" rel="noopener" href="https://tc39.github.io/ecma262/#sec-well-known-symbols"> symbol表的规范</a> </p>
+<p><code>symbol</code> 是唯一标识符的基本类型</p>
+<p>symbol 是使用带有可选描述（name）的 <code>Symbol()</code> 调用创建的。</p>
+<p>symbol 总是不同的值，即使它们有相同的名字。如果我们希望同名的 symbol 相等，那么我们应该使用全局注册表：<code>Symbol.for(key)</code> 返回（如果需要的话则创建）一个以 <code>key</code> 作为名字的全局 symbol。使用 <code>Symbol.for</code> 多次调用 <code>key</code> 相同的 symbol 时，返回的就是同一个 symbol。</p>
+<p>symbol 有两个主要的使用场景：</p>
+<ol>
+<li><p>“隐藏” 对象属性。</p>
+<p>如果我们想要向“属于”另一个脚本或者库的对象添加一个属性，我们可以创建一个 symbol 并使用它作为属性的键。symbol 属性不会出现在 <code>for..in</code> 中，因此它不会意外地被与其他属性一起处理。并且，它不会被直接访问，因为另一个脚本没有我们的 symbol。因此，该属性将受到保护，防止被意外使用或重写。</p>
+<p>因此我们可以使用 symbol 属性“秘密地”将一些东西隐藏到我们需要的对象中，但其他地方看不到它。</p>
+</li>
+<li><p>JavaScript 使用了许多系统 symbol，这些 symbol 可以作为 <code>Symbol.*</code> 访问。我们可以使用它们来改变一些内建行为。例如，在本教程的后面部分，我们将使用 <code>Symbol.iterator</code> 来进行 <a target="_blank" rel="noopener" href="https://javascript.p2hp.com/iterable">迭代</a> 操作，使用 <code>Symbol.toPrimitive</code> 来设置 <a target="_blank" rel="noopener" href="https://javascript.p2hp.com/object-toprimitive">对象原始值的转换</a> 等等。</p>
+</li>
+</ol>
+<p>从技术上说，symbol 不是 100% 隐藏的。有一个内建方法 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols(obj)</a> 允许我们获取所有的 symbol。还有一个名为 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys">Reflect.ownKeys(obj)</a> 的方法可以返回一个对象的 <strong>所有</strong> 键，包括 symbol。</p>
+<h1 id="对象-——-原始值转换"><a href="#对象-——-原始值转换" class="headerlink" title="对象 —— 原始值转换"></a>对象 —— 原始值转换</h1><h2 id="hint"><a href="#hint" class="headerlink" title="hint"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/object-toprimitive#hint">hint</a></h2><p><strong>“string”</strong></p>
+<p>对象到字符串的转换，当我们对期望一个字符串的对象执行操作时，如 “alert”</p>
+<p><strong>“number”</strong></p>
+<p>对象到数字的转换，例如当我们进行数学运算时</p>
+<p><strong>“default”</strong></p>
+<p>除了一种情况（<code>Date</code> 对象，我们稍后会讲到）之外，所有内建对象都以和 <code>&quot;number&quot;</code> 相同的方式实现 <code>&quot;default&quot;</code> 转换。</p>
+<h2 id="Symbol-toPrimitive"><a href="#Symbol-toPrimitive" class="headerlink" title="Symbol.toPrimitive"></a><a target="_blank" rel="noopener" href="https://javascript.p2hp.com/object-toprimitive#symboltoprimitive">Symbol.toPrimitive</a></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">obj[<span class="title class_">Symbol</span>.<span class="property">toPrimitive</span>] = <span class="keyword">function</span>(<span class="params">hint</span>) &#123;</span><br><span class="line">  <span class="comment">// 这里是将此对象转换为原始值的代码</span></span><br><span class="line">  <span class="comment">// 它必须返回一个原始值</span></span><br><span class="line">  <span class="comment">// hint = &quot;string&quot;、&quot;number&quot; 或 &quot;default&quot; 中的一个</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/08/01/JavaScript/object%E5%9F%BA%E7%A1%80/Object%E5%9F%BA%E7%A1%80/">http://example.com/2023/08/01/JavaScript/object%E5%9F%BA%E7%A1%80/Object%E5%9F%BA%E7%A1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/04/06/JavaScript/JavaScript%E5%9F%BA%E7%A1%80/" title="数据类型"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">数据类型</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%EF%BC%8C%E2%80%9Dthis%E2%80%9D"><span class="toc-number">1.</span> <span class="toc-text">对象方法，”this”</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E6%B2%A1%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84-%E2%80%9Cthis%E2%80%9D"><span class="toc-number">1.1.</span> <span class="toc-text">箭头函数没有自己的 “this”</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E5%92%8C%E6%93%8D%E4%BD%9C%E7%AC%A6-%E2%80%9Cnew%E2%80%9D"><span class="toc-number">2.</span> <span class="toc-text">构造器和操作符 “new”</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F%E6%B5%8B%E8%AF%95%EF%BC%9Anew-target"><span class="toc-number">2.1.</span> <span class="toc-text">构造器模式测试：new.target</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E7%9A%84-return"><span class="toc-number">2.2.</span> <span class="toc-text">构造器的 return</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">构造器中的方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E9%93%BE-%E2%80%9C-%E2%80%9D"><span class="toc-number">3.</span> <span class="toc-text">可选链 “?.”</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#symbol-%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">symbol 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%AD%97%E9%9D%A2%E9%87%8F%E4%B8%AD%E7%9A%84-symbol"><span class="toc-number">4.0.1.</span> <span class="toc-text">对象字面量中的 symbol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#symbol-%E5%9C%A8-for%E2%80%A6in-%E4%B8%AD%E4%BC%9A%E8%A2%AB%E8%B7%B3%E8%BF%87"><span class="toc-number">4.0.2.</span> <span class="toc-text">symbol 在 for…in 中会被跳过</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80-symbol"><span class="toc-number">4.1.</span> <span class="toc-text">全局 symbol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Symbol-keyFor"><span class="toc-number">4.1.1.</span> <span class="toc-text">Symbol.keyFor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F-symbol"><span class="toc-number">4.2.</span> <span class="toc-text">系统 symbol</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1-%E2%80%94%E2%80%94-%E5%8E%9F%E5%A7%8B%E5%80%BC%E8%BD%AC%E6%8D%A2"><span class="toc-number">5.</span> <span class="toc-text">对象 —— 原始值转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hint"><span class="toc-number">5.1.</span> <span class="toc-text">hint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Symbol-toPrimitive"><span class="toc-number">5.2.</span> <span class="toc-text">Symbol.toPrimitive</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/21/hello-world/" title="Hello World">Hello World</a><time datetime="2024-04-21T14:30:16.023Z" title="Created 2024-04-21 22:30:16">2024-04-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/18/JavaScript/Promise%EF%BC%8Casyncawait/%E4%BD%BF%E7%94%A8%20promise%20%E8%BF%9B%E8%A1%8C%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" title="Untitled">Untitled</a><time datetime="2024-04-18T15:22:46.227Z" title="Created 2024-04-18 23:22:46">2024-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/18/JavaScript/Promise%EF%BC%8Casyncawait/Promise/" title="Untitled">Untitled</a><time datetime="2024-04-18T13:07:40.381Z" title="Created 2024-04-18 21:07:40">2024-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/18/JavaScript/Promise%EF%BC%8Casyncawait/Promise%E9%93%BE/" title="Untitled">Untitled</a><time datetime="2024-04-18T10:59:00.524Z" title="Created 2024-04-18 18:59:00">2024-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/17/JavaScript/%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/new%20Function/" title="Untitled">Untitled</a><time datetime="2024-04-17T12:54:41.647Z" title="Created 2024-04-17 20:54:41">2024-04-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
